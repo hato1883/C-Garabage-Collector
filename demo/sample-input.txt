@@ -1,0 +1,91 @@
+a // Add milk
+Milk
+From cows
+1700
+
+a // Add bread
+Bread
+From wheat
+2500
+
+l // List items
+y
+y
+
+d // Delete bread
+Bread
+y
+
+l // List items
+y
+y
+
+a // Add Whole Wheat
+Whole Wheat
+Unhealthy Wheat
+1000
+
+l // List items
+y
+y
+
+E // Edit Whole Wheat
+Whole Wheat
+Whole Wheat
+Healthy Wheat
+1000
+y
+
+l // List Merch
+y
+y
+
+p // Add 300 items to Milk storage (Z01)
+Milk
+Z01
+300
+
+s // Show Milk stock
+Milk
+
+p // Add 1 item to Whole Wheat storage (Z05)
+Whole Wheat
+Z05
+1
+
+s // Show Whole Wheat stock
+Whole Wheat
+
+p // Add another 49 items to Whole Wheat storage (Z05)
+Whole Wheat
+Z05
+49
+
+s // Show Whole Wheat stock
+Whole Wheat
+
+c // Create a shopping cart
+
++ // Add 250 Milk to shopping cart 1
+1
+Milk
+250
+
+= // Get cost of cart 1
+1
+
++ // Add 50 Milk to shopping cart 1
+1
+Milk
+50
+
+= // Get cost of cart 1
+1
+
+o // Checkout cart 1
+1
+
+s // show milk stock remaining
+Milk
+
+q // Quit

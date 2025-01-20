@@ -1,0 +1,33 @@
+name: C Complie Action (Local Runner)
+
+on:
+  workflow_call:
+    inputs:
+      directory:
+        required: true
+        type: string
+
+defaults:
+  run:
+    shell: bash
+  
+jobs:
+  _:
+    runs-on: self-hosted
+    steps:
+        # Downloand latest commit
+      - uses: actions/checkout@v4
+
+        # Build source using make
+      - name: Compile and Link
+        working-directory: ${{ inputs.directory }}
+        run: make build
+                  
+        # Upload outputs
+#      - name: Upload Compiled files
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: build
+#          path: |
+#            ${{ inputs.directory }}/*
+#            ${{ inputs.directory }}/**/*

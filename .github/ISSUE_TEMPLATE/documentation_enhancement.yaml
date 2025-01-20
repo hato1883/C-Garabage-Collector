@@ -1,0 +1,35 @@
+name: 📝 Documentation Enhancement
+description: |
+  Use this template if you have found a spelling mistakes
+  or have other ideas on how to improve the documentation for this project
+title: "[DOCUMENTATION] replace_me"
+labels: ["📝 Documentation", "Status: Triage"]
+assignees: 'hato1883'
+body:
+- type: dropdown
+  attributes:
+    label: Enchanment Type
+    description: What type of ehancement is it
+    options:
+      - Spelling Mistake
+      - Improvments
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: What text do you want to change?
+    description: Only mark where problomatic text exist. Do not write what is wrong with it. (Use GitHub permalinks)
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: What needs to be improved?
+    description: We would love to know what exactly in the text needs to be addressed. (ignore if it is a spelling mistake)
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: Proposed solution
+    description: How do you want to improve it? (ignore if it is a spelling mistake)
+  validations:
+    required: false

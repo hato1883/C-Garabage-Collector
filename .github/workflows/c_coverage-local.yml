@@ -1,0 +1,33 @@
+name: C CUnit Coverage (Local Runner)
+
+on:
+  workflow_call:
+    inputs:
+      directory:
+        required: true
+        type: string
+
+defaults:
+  run:
+    shell: bash
+jobs:
+  _:
+    runs-on: self-hosted
+    steps:
+        # Download latest commit
+      - uses: actions/checkout@v4
+
+        # Build source using make
+      - name: Test Code Coverage
+        working-directory: ${{ inputs.directory }}
+        run: make coverage
+
+        # Upload outputs
+#      - name: Upload Coverage report
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: coverage html
+#          path: |
+#            ${{ inputs.directory }}/coverage
+#            ${{ inputs.directory }}/coverage/*
+#            ${{ inputs.directory }}/coverage/**/*

@@ -1,0 +1,23 @@
+name: C Memory Leak Check Action (Local Runner)
+
+on:
+  workflow_call:
+    inputs:
+      directory:
+        required: true
+        type: string
+
+defaults:
+  run:
+    shell: bash
+jobs:
+  _:
+    runs-on: self-hosted
+    steps:
+        # Download latest commit
+      - uses: actions/checkout@v4
+
+        # Build source using make
+      - name: Memory Leak Check
+        working-directory: ${{ inputs.directory }}
+        run: make memtest

@@ -1,0 +1,38 @@
+name: 🛠️ Make Enhancement
+description: |
+  Use this template if you have a suggestion for an enhancement of MakeFile.
+  Examples: add a specific command suite to execute.
+  Adding or changing color of existing output.
+
+title: "[MAKE] replace_me"
+labels: ["🛠️ Make", "Status: Triage"]
+assignees: 'hato1883'
+body:
+- type: dropdown
+  attributes:
+    label: Enchanment Type
+    description: What type of enhancement is it?
+    options:
+      - New Target/Command
+      - Coloring
+      - Output Format
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Why?
+    description: Explain why the chosen target/coloring or output format is needed.
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Additional Information
+    description: Any extra information you want to give regarding this
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: Proposed solution
+    description: Do you have a suggestion already? Feel free to put it here. 
+  validations:
+    required: false

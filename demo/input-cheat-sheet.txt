@@ -1,0 +1,46 @@
+a // Register
+Item
+decs
+100
+
+l // List items
+
+d // Unregister
+Item
+y
+
+E // Edit
+Item
+new_name
+new_decs
+666
+y
+
+p // Add stock: 300 items to Milk storage (A01)
+Item
+A01
+300
+
+s // Show stock
+Item
+
+c // Create a shopping cart
+
+R // Remove a shopping cart
+
++ // Add to cart
+1
+Item
+250
+
+- // Remove from cart
+1
+Item
+
+= // Get cost of cart
+1
+
+o // Checkout cart 1
+1
+
+q // Quit

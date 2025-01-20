@@ -1,0 +1,39 @@
+name: ✨ Code Enhancement
+description: |
+  Use this template if you have a Suggestion on an Enhancement of the code base.
+  Example: Function is too long.
+  This code in <> is lowing us down (backed with profiling arguments).
+
+title: "[ENHANCE] replace_me"
+labels: ["✨ Enhancement", "Status: Triage"]
+assignees: 'hato1883'
+body:
+- type: dropdown
+  attributes:
+    label: Enchanment Type
+    description: What type of ehancement is it
+    options:
+      - Preformance
+      - Readability
+      - Repeated Code
+      - Unused Code
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: What code dose is affect?
+    description: Use GitHub permalinks to mark code that is the target
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Additional Information
+    description: Any extra information you want to give regarding the issue
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: Proposed solution
+    description: Do you have a suggestion for a fix? 
+  validations:
+    required: false

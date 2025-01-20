@@ -1,0 +1,381 @@
+a // Register "Gurka"
+Gurka
+Gurka ca 320g Klass 1 ICA
+18
+p // Add stock: Gurka 999st (A01)
+Gurka
+A01
+999
+
+a // Register "Kivi"
+Kivi
+Kiwi i korg 800g Klass 1 ICA
+38
+p // Add stock: Kivi 999st (A02)
+Kivi
+A02
+999
+
+a // Register "Krogarmix"
+Krogarmix
+Krogarmix 200g ICA
+31
+p // Add stock: Krogarmix 999st (A03)
+Krogarmix
+A03
+999
+
+a // Register "Lime"
+Lime
+Lime ca 90g Klass 1 ICA
+8
+p // Add stock: Lime 999st (A04)
+Lime
+A04
+999
+
+a // Register "Medelhavsmix"
+Medelhavsmix
+Medelhavsmix Sköljd 125g ICA
+31
+p // Add stock: Medelhavsmix 999st (A05)
+Medelhavsmix
+A05
+999
+
+a // Register "Provensalsk sallad"
+Provensalsk sallad
+Provensalsk sallad 150g ICA
+31
+p // Add stock: Provensalsk sallad 999st (A06)
+Provensalsk sallad
+A06
+999
+
+a // Register "Röd råkostmix"
+Röd råkostmix
+Röd råkostmix Sköljd 200g ICA
+30
+p // Add stock: Röd råkostmix 999st (A07)
+Röd råkostmix
+A07
+999
+
+a // Register "Salladsmix"
+Salladsmix
+Salladsmix Sköljd 225g ICA
+31
+p // Add stock: Salladsmix 999st (A08)
+Salladsmix
+A08
+999
+
+a // Register "Snackmorötter"
+Snackmorötter
+Snackmorötter Ekologisk 200g Klass 1 ICA I love eco
+18
+p // Add stock: Snackmorötter 999st (A09)
+Snackmorötter
+A09
+999
+
+a // Register "Äpple Merpack"
+Äpple Merpack
+Äpple Merpack 1kg Jonagold Klass 2 ICA
+20
+p // Add stock: Äpple Merpack 999st (A10)
+Äpple Merpack
+A10
+999
+
+a // Register "Alfalfagroddar"
+Alfalfagroddar
+Alfalfagroddar Ekologiska 130g KRAV Klass 1
+23
+p // Add stock: Alfalfagroddar 999st (A11)
+Alfalfagroddar
+A11
+999
+
+a // Register "Ananas"
+Ananas
+Ananas Extra Sweet ca 950g Klass 1 ICA
+27
+p // Add stock: Ananas 999st (A12)
+Ananas
+A12
+999
+
+a // Register "Aubergine"
+Aubergine
+Aubergine ca 225g Klass 1 ICA
+26
+p // Add stock: Aubergine 999st (A13)
+Aubergine
+A13
+999
+
+a // Register "Avokado"
+Avokado
+Avokado ca 180g Klass 1 ICA
+14
+p // Add stock: Avokado 999st (A14)
+Avokado
+A14
+999
+
+a // Register "Bakpotatis"
+Bakpotatis
+Bakpotatis ca 300g Klass 1 ICA
+15
+p // Add stock: Bakpotatis 999st (A15)
+Bakpotatis
+A15
+999
+
+a // Register "Bananschalottenlök"
+Bananschalottenlök
+Bananschalottenlök 250g Klass 1 ICA
+23
+p // Add stock: Bananschalottenlök 999st (A16)
+Bananschalottenlök
+A16
+999
+
+a // Register "Basilika"
+Basilika
+Basilika Ekologisk 1-p KRAV Klass 1 ICA I
+21
+p // Add stock: Basilika 999st (A17)
+Basilika
+A17
+999
+
+a // Register "Bellaverde"
+Bellaverde
+Bellaverde 200g Klass 1 ICA
+41
+p // Add stock: Bellaverde 999st (A18)
+Bellaverde
+A18
+999
+
+a // Register "Bladpersilja Flowpack"
+Bladpersilja Flowpack
+Bladpersilja Flowpack 20g Klass 1 ICA
+17
+p // Add stock: Bladpersilja Flowpack 999st (A19)
+Bladpersilja Flowpack
+A19
+999
+
+a // Register "Bladpersilja Merpack"
+Bladpersilja Merpack
+Bladpersilja Merpack 250g Klass 1 ICA
+32
+p // Add stock: Bladpersilja Merpack 999st (A20)
+Bladpersilja Merpack
+A20
+999
+
+a // Register "Blodapelsin"
+Blodapelsin
+Blodapelsin Tarrocco 1kg Klass 1 ICA
+36
+p // Add stock: Blodapelsin 999st (A21)
+Blodapelsin
+A21
+999
+
+a // Register "Blomkål"
+Blomkål
+Blomkål ca 900g Klass 1 ICA
+40
+p // Add stock: Blomkål 999st (A22)
+Blomkål
+A22
+999
+
+a // Register "Blåbär"
+Blåbär
+Blåbär 125g Klass 1 ICA
+32
+p // Add stock: Blåbär 999st (A23)
+Blåbär
+A23
+999
+
+a // Register "Broccoli"
+Broccoli
+Broccoli 250g Klass 1 ICA
+18
+p // Add stock: Broccoli 999st (A24)
+Broccoli
+A24
+999
+
+a // Register "Brysselkål"
+Brysselkål
+Brysselkål 500g Klass 1 ICA
+23
+p // Add stock: Brysselkål 999st (A25)
+Brysselkål
+A25
+999
+
+a // Register "Champinjon"
+Champinjon
+Champinjon 250g Klass 1 ICA
+18
+p // Add stock: Champinjon 999st (A26)
+Champinjon
+A26
+999
+
+a // Register "Chilipepparmix"
+Chilipepparmix
+Chilipepparmix Ekologisk 40g KRAV Klass 1 ICA I love eco
+27
+p // Add stock: Chilipepparmix 999st (A27)
+Chilipepparmix
+A27
+999
+
+a // Register "Citron"
+Citron
+Citron ca 200g Klass 1 ICA
+8
+p // Add stock: Citron 999st (A28)
+Citron
+A28
+999
+
+a // Register "Citrongräs"
+Citrongräs
+Citrongräs 50g Klass 1 ICA
+32
+p // Add stock: Citrongräs 999st (A29)
+Citrongräs
+A29
+999
+
+a // Register "Clementiner i korg"
+Clementiner i korg
+Clementiner i korg 1kg Klass 1 ICA
+49
+p // Add stock: Clementiner i korg 999st (A30)
+Clementiner i korg
+A30
+999
+
+a // Register "Crunchita"
+Crunchita
+Crunchita 200g Klass 1 ICA
+24
+p // Add stock: Crunchita 999st (A31)
+Crunchita
+A31
+999
+
+a // Register "Dadlar Chokladboll"
+Dadlar Chokladboll
+Dadlar Chokladboll 125g Dave & Jon's
+27
+p // Add stock: Dadlar Chokladboll 999st (A32)
+Dadlar Chokladboll
+A32
+999
+
+a // Register "Dadlar Fizzy Bottle"
+Dadlar Fizzy Bottle
+Dadlar Fizzy Bottle 125g Dave & Jon's
+27
+p // Add stock: Dadlar Fizzy Bottle 999st (A33)
+Dadlar Fizzy Bottle
+A33
+999
+
+a // Register "Dadlar Salted Caramel Peanuts"
+Dadlar Salted Caramel Peanuts
+Dadlar Salted Caramel Peanuts 125g Dave & Jon's
+27
+p // Add stock: Dadlar Salted Caramel Peanuts 999st (A34)
+Dadlar Salted Caramel Peanuts
+A34
+999
+
+a // Register "Dadlar Saltlakrits"
+Dadlar Saltlakrits
+Dadlar Saltlakrits 125g Dave & Jon's
+27
+p // Add stock: Dadlar Saltlakrits 999st (A35)
+Dadlar Saltlakrits
+A35
+999
+
+a // Register "Dadlar Sour Cola"
+Dadlar Sour Cola
+Dadlar Sour Cola 125g Dave & Jon's
+27
+p // Add stock: Dadlar Sour Cola 999st (A36)
+Dadlar Sour Cola
+A36
+999
+
+a // Register "Dadlar Sweet Peach"
+Dadlar Sweet Peach
+Dadlar Sweet Peach 125g Dave & Jon's
+27
+p // Add stock: Dadlar Sweet Peach 999st (A37)
+Dadlar Sweet Peach
+A37
+999
+
+a // Register "Delikatesspotatis Amandine"
+Delikatesspotatis Amandine
+Delikatesspotatis Amandine Sköljd 900g Klass 1 ICA
+29
+p // Add stock: Delikatesspotatis Amandine 999st (A38)
+Delikatesspotatis Amandine
+A38
+999
+
+a // Register "Delikatesspotatis Ratte"
+Delikatesspotatis Ratte
+Delikatesspotatis Ratte Sköljd 900g Klass 1 ICA
+29
+p // Add stock: Delikatesspotatis Ratte 999st (A39)
+Delikatesspotatis Ratte
+A39
+999
+
+a // Register "Delikatesspotatis"
+Delikatesspotatis
+Delikatesspotatis Sköljd 900g Klass 1 ICA
+25
+p // Add stock: Delikatesspotatis 999st (A40)
+Delikatesspotatis
+A40
+999
+
+a // Register "Delikatessrödbetor"
+Delikatessrödbetor
+Delikatessrödbetor 350g Klass 1 ICA
+19
+p // Add stock: Delikatessrödbetor 999st (A41)
+Delikatessrödbetor
+A41
+999
+
+a // Register "Dill Flowpack"
+Dill Flowpack
+Dill Flowpack 20g Klass 1 ICA
+18
+p // Add stock: Dill Flowpack 999st (A42)
+Dill Flowpack
+A42
+999
+
+l // List 20 items
+y // List 20 more items
+y // List 2 more items

@@ -1,0 +1,40 @@
+name: CI Project
+
+on:
+  push:
+
+jobs:
+  Compile:
+      uses: ./.github/workflows/c_compile-local.yml
+      with:
+        directory: ./
+
+  Format-Check:
+    uses: ./.github/workflows/c_format_check-local.yml
+    with:
+      directory: ./
+
+  Run:
+    needs: Compile
+    uses: ./.github/workflows/c_run-local.yml
+    with:
+      directory: ./
+
+  CUnit-Test:
+    needs: Compile
+    uses: ./.github/workflows/c_test-local.yml
+    with:
+      directory: ./
+
+  Memory-Test:
+    needs: Compile
+    uses: ./.github/workflows/c_mem_test-local.yml
+    with:
+      directory: ./
+
+  Test-Coverage:
+    needs: Compile
+    uses: ./.github/workflows/c_coverage-local.yml
+    with:
+      directory: ./
+      

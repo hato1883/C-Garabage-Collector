@@ -1,0 +1,37 @@
+name: 🔎 Unit Test Case
+description: |
+  Use this template if you have found a edgecase that should be tested
+  or if there is any test that is missing to ensure source works as intended
+
+title: "[CUNIT] replace_me"
+labels: ["🔎 Cunit", "Status: Triage"]
+assignees: 'hato1883'
+body:
+- type: dropdown
+  attributes:
+    label: Enchanment Type
+    description: What type of ehancement is it
+    options:
+      - Missing Edge case
+      - Missing Test
+      - Improvement of existing test needed
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Why do we need this test case?
+    description: Explain why existing tests do not cover the case we are missing
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Additional Information
+    description: Any extra information you want to give regarding the issue
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: Proposed solution
+    description: Do you have a suggestion for a fix? 
+  validations:
+    required: false
