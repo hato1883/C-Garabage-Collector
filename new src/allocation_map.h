@@ -24,7 +24,9 @@
 /**
  * @def Defines how much memory is represented by a byte in the map.
  */
-#define BYTE_DENSITY (MIN_ALLOC_OBJECT_SIZE * ALLOCATIONS_PER_BYTE)
+#define ALLOCATION_MAP_DENSITY (MIN_ALLOC_OBJECT_SIZE * ALLOCATIONS_PER_BYTE)
+
+typedef char *alloc_map_t;
 
 /**
  * @brief Creates an allocation map for the memory of given amount of bytes.
@@ -36,13 +38,13 @@
  * @return an allocation map if the allocation was successful, assert happens
  * otherwise.
  */
-char *create_allocation_map (size_t bytes);
+alloc_map_t create_allocation_map (size_t bytes);
 
 /**
  * @brief Sets all bytes to 0 in allocation map.
  * @return a cleared allocation map.
  */
-void reset_allocation_map (heap_t *h);
+void reset_allocation_map (alloc_map_t alloc_map);
 
 /**
  * @brief Converts a pointer offset from the heap start to allocated object
@@ -68,14 +70,54 @@ char create_bitmask (size_t offset);
  * changed.
  * @param is_allocated - if the bit should be marked as allocated or not
  */
-void update_alloc_map (char *alloc_map, size_t offset, bool is_allocated);
+void update_alloc_map (alloc_map_t alloc_map, size_t offset,
+                       bool is_allocated);
 
 /**
- * Checks if the given offset corresponds to an allocated area in the
+ * @brief Updates an entire range of bits in the allocation map.
+ * Useful wehn needing to update alarge amount of bit in the map after
+ * allocating or freeing a object.
+ *
+ * @param alloc_map Map of all allocated regions in the heap
+ * @param start Starting offset within the heap.
+ * @param size Size of the allocation that you want to modify.
+ * @param is_allocated whether or not to set the range as allocated or not.
+ */
+void update_alloc_map_range (alloc_map_t alloc_map, size_t start, size_t size,
+                             bool is_allocated);
+
+/**
+ * @brief Checks if the given offset corresponds to an allocated area in the
  * allocation map.
  * @param alloc_map - the allocation map
  * @param offset - the offset to check
  * @return true if the area the offset corresponds to is allocated.
  */
-bool is_offset_allocated (char *alloc_map, size_t offset);
+bool is_offset_allocated (alloc_map_t alloc_map, size_t offset);
 
+/**
+ * @brief Finds the first available offset that can store the given amount of
+ * data in allocation map. This function dose not change the given allocation
+ * map nor heap. To change the allocation map use:
+ *
+ * update_alloc_map_range()
+ *
+ * @param alloc_map Map of all allocated region in the heap
+ * @param alloc_size Size of the allocation that you want to make in the heap.
+ * @param left_to_right Direction to search in, if set to true; the function
+ * will search from start to the end. If set to false it will instead search
+ * from end to start.
+ * @return Offset of next avaliable space that can hold the given allocation
+ * size.
+ */
+size_t find_offset_of_empty_region (alloc_map_t alloc_map, size_t alloc_size,
+                                    bool left_to_right);
+
+/**
+ * @brief Calculates how much space is used in the heap using the allocation
+ * map. This esitmate includes all allocation metadata and alignment bytes.
+ *
+ * @param alloc_map Map of all allocated region in the heap
+ * @return Number of bytes estimated to have been allocated.
+ */
+size_t num_allocated_bytes (alloc_map_t alloc_map);
