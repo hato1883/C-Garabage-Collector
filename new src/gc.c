@@ -58,12 +58,8 @@ h_init (size_t bytes, bool unsafe_stack, float gc_threshold)
   /* Allocate heap struct on the heap.  */
   heap_t *heap = malloc (sizeof (heap_t));
 
-  /* Ensure our size is atleast as big as our minimal size.  */
-  bytes = bytes < MINIMUM_ALIGNMENT ? MINIMUM_ALIGNMENT : bytes;
-
-  /* Round up to multiples of HEAP_ALIGNMENT.  */
-  size_t aligned_size
-      = ((bytes + HEAP_ALIGNMENT - 1) / HEAP_ALIGNMENT) * HEAP_ALIGNMENT;
+  /* Align size of heap to the allocation maps BYTE_DENSITY */
+  size_t aligned_size = round_up_to_alignment (bytes, ALLOCATION_MAP_DENSITY);
 
   /* Set fields:  */
   /* Threshold before running GC.  */
@@ -74,10 +70,6 @@ h_init (size_t bytes, bool unsafe_stack, float gc_threshold)
 
   /* Size of allocated heap.  */
   heap->size = aligned_size;
-
-  heap->page_size = PAGE_SIZE;
-  /* Map of active/inactive pages.  */
-  heap->page_map = create_page_map (aligned_size);
 
   /* Map of active/inactive allocations.  */
   heap->alloc_map = create_allocation_map (aligned_size);
@@ -108,12 +100,6 @@ h_delete (heap_t *h)
          h_init
          Frees the allocation map if it exists.  */
       free (h->alloc_map);
-    }
-  if (h->page_map != NULL)
-    { /* The check can be removed when the allocation map is implemented in
-         h_init
-         Frees the allocation map if it exists.  */
-      free (h->page_map);
     }
 
   /* if we are destroying the heap ref stored in global heap,
@@ -150,22 +136,13 @@ h_delete_dbg (heap_t *h, void *dbg_value)
 size_t
 h_avail (heap_t *h)
 {
-  size_t free_bytes = 0;
-  size_t heap_size = h->size;
-  for (size_t offset = 0; offset < heap_size; offset += HEAP_ALIGNMENT)
-    {
-      if (!is_offset_allocated (h->alloc_map, offset))
-        {
-          free_bytes += HEAP_ALIGNMENT;
-        }
-    }
-  return free_bytes;
+  return num_free_bytes(h);
 }
 
 size_t
 h_used (heap_t *h)
 {
-  return h->used_bytes;
+  return num_allocated_bytes(h->alloc_map);
 }
 
 void *
