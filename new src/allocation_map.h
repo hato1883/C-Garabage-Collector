@@ -75,7 +75,7 @@ void update_alloc_map (alloc_map_t alloc_map, size_t offset,
 
 /**
  * @brief Updates an entire range of bits in the allocation map.
- * Useful wehn needing to update alarge amount of bit in the map after
+ * Useful when needing to update alarge amount of bit in the map after
  * allocating or freeing a object.
  *
  * @param alloc_map Map of all allocated regions in the heap
@@ -107,15 +107,15 @@ bool is_offset_allocated (alloc_map_t alloc_map, size_t offset);
  * @param left_to_right Direction to search in, if set to true; the function
  * will search from start to the end. If set to false it will instead search
  * from end to start.
- * @return Offset of next avaliable space that can hold the given allocation
+ * @return Offset of next available space that can hold the given allocation
  * size.
  */
 size_t find_offset_of_empty_region (alloc_map_t alloc_map, size_t alloc_size,
-                                    bool left_to_right);
+                                    bool left_to_right, bool *success);
 
 /**
  * @brief Calculates how much space is used in the heap using the allocation
- * map. This esitmate includes all allocation metadata and alignment bytes.
+ * map. This estimate includes all allocation metadata and alignment bytes.
  *
  * @param alloc_map Map of all allocated region in the heap
  * @return Number of bytes estimated to have been allocated.

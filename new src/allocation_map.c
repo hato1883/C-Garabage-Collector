@@ -219,7 +219,7 @@ alloc_map_size_needed (size_t heap_size)
    Toggle if search should move left to right or right to left. */
 size_t
 find_offset_of_empty_region (alloc_map_t alloc_map, size_t alloc_size,
-                             bool left_to_right)
+                             bool left_to_right, bool *success)
 {
   /* map expects allocation to be divisible by MIN_ALLOC_OBJECT_SIZE */
   size_t alloc_aligned
@@ -231,6 +231,7 @@ find_offset_of_empty_region (alloc_map_t alloc_map, size_t alloc_size,
       = get_size_allocation_map (alloc_map) * ALLOCATION_MAP_DENSITY;
   /* Offset within the allocation map */
   size_t offset;
+  *success = true;
   if (left_to_right)
     {
       offset = 0;
@@ -262,6 +263,7 @@ find_offset_of_empty_region (alloc_map_t alloc_map, size_t alloc_size,
           offset -= MIN_ALLOC_OBJECT_SIZE;
         }
     }
+  *success = false;
   return offset;
 }
 
@@ -337,14 +339,14 @@ num_allocated_bytes (alloc_map_t alloc_map)
   size_t allocated_bits = 0;
   size_t num_bytes = get_size_allocation_map (alloc_map);
   unsigned int *map = alloc_map;
-  size_t bytes_handeld = 0;
+  size_t bytes_handled = 0;
   for (size_t int_index = sizeof (size_t); int_index < num_bytes;
        int_index += sizeof (unsigned int))
     {
       allocated_bits += __builtin_popcount (map[int_index]);
-      bytes_handeld = int_index;
+      bytes_handled = int_index;
     }
-  for (size_t char_index = bytes_handeld; char_index < num_bytes; char_index++)
+  for (size_t char_index = bytes_handled; char_index < num_bytes; char_index++)
     {
       unsigned char byte = alloc_map[char_index];
       allocated_bits += __builtin_popcount ((unsigned int)byte);
