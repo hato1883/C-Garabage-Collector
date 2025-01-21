@@ -6,8 +6,8 @@
 #include <stdint.h>
 #include <stdlib.h>
 
+#include "allocation.h"
 #include "format_encoding.h"
-#include "get_header.h"
 #include "header.h"
 #include "heap_internal.h"
 
@@ -167,7 +167,7 @@ convert_struct_to_header (heap_t *heap, char *format, bool *success)
     }
   else
     { /* did not fit in vector, use pointer to this string */
-      void *format_alloc = h_alloc_raw (heap, strlen (format) + 1);
+      void *format_alloc = alloc_raw (heap, strlen (format) + 1);
       char *ptr = format_alloc;
       while (*format)
         {

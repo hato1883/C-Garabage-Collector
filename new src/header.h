@@ -4,9 +4,11 @@
  */
 
 #pragma once
-#include "ptr_queue.h"
+
 #include <stdbool.h>
 #include <stdint.h>
+
+#include "ptr_queue.h"
 
 /**
  * The number of bits in a header.

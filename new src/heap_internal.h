@@ -26,6 +26,7 @@
  * @param next_empty_mem_segment: A bump pointer to the next empty available
  * space in the heap that can be used for allocation.
  * @param used_bytes: The amount of bytes currently allocated by the user.
+ * @param left_to_right: direction to move bump pointer when allocating.
  */
 struct heap
 {
@@ -36,4 +37,5 @@ struct heap
   void *heap_start;
   char *next_empty_mem_segment;
   size_t used_bytes;
+  bool left_to_right;
 };

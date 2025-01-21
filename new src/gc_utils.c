@@ -6,7 +6,6 @@
 #include <assert.h>
 
 #include "gc_utils.h"
-#include "heap.h"
 #include "heap_internal.h"
 
 void

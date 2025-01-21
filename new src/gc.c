@@ -26,7 +26,6 @@
 #include "heap_internal.h"
 #include "is_pointer_in_alloc.h"
 #include "move_data.h"
-#include "page_map.h"
 #include "ptr_queue.h"
 #include "stack.h"
 
@@ -55,33 +54,7 @@ heap_t *global_heap = NULL;
 heap_t *
 h_init (size_t bytes, bool unsafe_stack, float gc_threshold)
 {
-  /* Allocate heap struct on the heap.  */
-  heap_t *heap = malloc (sizeof (heap_t));
-
-  /* Align size of heap to the allocation maps BYTE_DENSITY */
-  size_t aligned_size = round_up_to_alignment (bytes, ALLOCATION_MAP_DENSITY);
-
-  /* Set fields:  */
-  /* Threshold before running GC.  */
-  heap->gc_threshold = gc_threshold;
-
-  /* Are stack pointers considered safe? true = yes, false = no  */
-  heap->is_unsafe_stack = unsafe_stack;
-
-  /* Size of allocated heap.  */
-  heap->size = aligned_size;
-
-  /* Map of active/inactive allocations.  */
-  heap->alloc_map = create_allocation_map (aligned_size);
-
-  /* The actual heap which objects will be allocated on.  */
-  heap->heap_start = calloc (aligned_size, sizeof (char));
-
-  /* The bump pointer to where the next allocation will be made.  */
-  heap->next_empty_mem_segment = heap->heap_start;
-
-  /* Initializes the current number of used allocated bytes to 0.  */
-  heap->used_bytes = 0;
+  heap_t *heap = create_heap (bytes, unsafe_stack, gc_threshold);
 
   /* Store a reference to the first created heap in the global heap.  */
   if (global_heap == NULL)
@@ -95,22 +68,13 @@ h_init (size_t bytes, bool unsafe_stack, float gc_threshold)
 void
 h_delete (heap_t *h)
 {
-  if (h->alloc_map != NULL)
-    { /* The check can be removed when the allocation map is implemented in
-         h_init
-         Frees the allocation map if it exists.  */
-      free (h->alloc_map);
-    }
-
   /* if we are destroying the heap ref stored in global heap,
      we want to clear it to allow next h_init to set it.  */
   if (h == global_heap)
     {
       global_heap = NULL;
     }
-
-  free (h->heap_start); /* Frees the heap.  */
-  free (h);
+  destroy_heap (h);
 }
 
 void
@@ -136,13 +100,13 @@ h_delete_dbg (heap_t *h, void *dbg_value)
 size_t
 h_avail (heap_t *h)
 {
-  return num_free_bytes(h);
+  return num_free_bytes (h);
 }
 
 size_t
 h_used (heap_t *h)
 {
-  return num_allocated_bytes(h->alloc_map);
+  return num_allocated_bytes (h->alloc_map);
 }
 
 void *
