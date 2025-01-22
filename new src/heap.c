@@ -47,3 +47,16 @@ toggle_direction (heap_t *heap)
 {
   heap->left_to_right = !heap->left_to_right;
 }
+
+char *
+find_heap_end (heap_t *h)
+{
+  return ((char *)h->heap_start) + h->size;
+}
+
+bool
+is_bump_pointer_in_heap (heap_t *h)
+{
+  char *heap_end = find_heap_end (h);
+  return h->next_empty_mem_segment < heap_end;
+}

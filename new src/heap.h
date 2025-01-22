@@ -49,3 +49,17 @@ size_t num_free_bytes (heap_t *heap);
  * start of the edge.
  */
 void toggle_direction (heap_t *heap);
+
+/**
+ * Finds the end address of the heap.
+ * @param h the heap
+ * @return the end address of the heap
+ */
+char *find_heap_end (heap_t *h);
+
+/**
+ * Checks if the bump pointer has exceeded the end of the heap or not.
+ * @param h the heap
+ * @return true if the bump pointer has not exceeded the end of the heap
+ */
+bool is_bump_pointer_in_heap (heap_t *h);
