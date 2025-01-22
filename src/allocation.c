@@ -72,7 +72,7 @@ calc_alloc_size (char *alloc)
  * being allocated
  */
 void
-trigger_gc_on_treshold_reached (heap_t *h, size_t new_alloc_size)
+trigger_gc_on_threshold_reached (heap_t *h, size_t new_alloc_size)
 {
   size_t size_after_alloc = h_used (h) + new_alloc_size;
   double_t usage_percentage = ((double_t)size_after_alloc / h->size);
@@ -263,7 +263,7 @@ move_to_valid_space_if_alloc_possible (heap_t *h, size_t alloc_size)
       return false;
     }
   /* Trigger gc if threshold would be reached when allocation is finished.  */
-  trigger_gc_on_treshold_reached (h, alloc_size_with_metadata);
+  trigger_gc_on_threshold_reached (h, alloc_size_with_metadata);
 
   bool space_found = move_to_next_available_space (
       h, alloc_size_with_metadata); /* Moves to next available space in the
