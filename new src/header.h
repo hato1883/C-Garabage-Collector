@@ -34,10 +34,10 @@ typedef uint64_t header_t;
 /* The four different header alternatives.  */
 typedef enum HeaderType
 {
-  HEADER_POINTER_TO_FORMAT_STRING = 0b00,
-  HEADER_FORWARDING_ADDRESS = 0b01,
-  HEADER_SIZE = 0b10,
-  HEADER_BIT_VECTOR = 0b11,
+  HEADER_BIT_VECTOR = 0b00,
+  HEADER_SIZE = 0b01,
+  HEADER_POINTER_TO_FORMAT_STRING = 0b10,
+  HEADER_FORWARDING_ADDRESS = 0b11,
 } header_type_t;
 
 /**
@@ -113,6 +113,31 @@ header_t get_header_value (header_t *header_pointer);
  * @return Header with format set to 00.
  */
 header_t remove_header_type (header_t header);
+
+/**
+ * @brief Finds the header pointer of a forwarded allocation.
+ *
+ * Usage:
+ * Given a internal pointer of a string at index 3,
+ * we want to froward it to the forwarded allocation
+ * and then set it to index 3.
+ *
+ * First we find the offset within the old using
+ *
+ * header_ptr = find_header_of_forwarded_alloc(heap, this_pointer);
+ * and then do offset = this_pointer - header_ptr - sizeof(header_t);
+ *
+ * Now we know both where header is with the new allocation start address
+ * (forwarded address) and offset within allocation.
+ *
+ * Last step is to got to forwarded address and add offset,
+ * now you have the new pointer.
+ *
+ * @param a Pointer in a allocation that has been forwarded
+ * @return Address of header with forwarding address.
+ */
+void *
+find_header_of_forwarded_alloc (heap_t *h, void *pointer);
 
 /**
  * Updates the header of a pointer to a new header.

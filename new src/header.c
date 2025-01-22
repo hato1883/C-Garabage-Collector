@@ -8,6 +8,7 @@
 
 #include "allocation.h"
 #include "format_encoding.h"
+#include "gc_utils.h"
 #include "header.h"
 #include "heap_internal.h"
 
@@ -44,10 +45,65 @@ extract_header_type (header_t the_header)
 }
 
 /* Set bit 0 & 1 to 00 */
-header_type_t
+header_t
 remove_header_type (header_t the_header)
 {
   return the_header & ~MASK_FOR_HEADER_TYPE;
+}
+
+/**
+ * @brief Finds the header pointer of a forwarded allocation.
+ *
+ * Usage:
+ * Given a internal pointer of a string at index 3,
+ * we want to froward it to the forwarded allocation
+ * and then set it to index 3.
+ *
+ * First we find the offset within the old using
+ *
+ * header_ptr = find_header_of_forwarded_alloc(heap, this_pointer);
+ * and then do offset = this_pointer - header_ptr - sizeof(header_t);
+ *
+ * Now we know both where header is with the new allocation start address
+ * (forwarded address) and offset within allocation.
+ *
+ * Last step is to got to forwarded address and add offset,
+ * now you have the new pointer.
+ *
+ * @param a Pointer in a allocation that has been forwarded
+ * @return Address of header with forwarding address.
+ */
+void *
+find_header_of_forwarded_alloc (heap_t *h, void *pointer)
+{
+  size_t pointer_offset = pointer - h->heap_start;
+  assert (pointer_offset > h->size && "Pointer is not in the heap!");
+
+  /* Headers are aligned to 8 bytes, we round up and remove 8
+     effectively rounding down, header will never be after the pointer */
+  pointer_offset = round_up_to_alignment (pointer_offset, 8) - 8;
+  size_t offset = 0;
+
+  /* Calculates the potential start address of a allocation */
+  void *potential_start = h->heap_start + pointer_offset - offset;
+
+  /* check if given start has been forwarded */
+  header_t *pot_h_ptr = get_header_pointer (potential_start);
+  header_t pot_h_val = get_header_value (pot_h_ptr);
+  header_type_t pot_h_type = get_header_type (pot_h_val);
+  void *forwarded = get_pointer_in_header (pot_h_val);
+
+  while (!is_heap_pointer (forwarded, h) && offset < h->size)
+    { /* pointer is not within allocated heap space, or the offset is to large */
+      potential_start = h->heap_start + pointer_offset - offset;
+      pot_h_ptr = get_header_pointer (potential_start);
+      pot_h_val = get_header_value (pot_h_ptr);
+      pot_h_type = get_header_type (pot_h_val);
+      forwarded = get_pointer_in_header (pot_h_val);
+      offset += 8;
+    }
+  assert (offset > pointer_offset && "Header to Pointer was not found!");
+  return pot_h_ptr;
 }
 
 /* Updates the header of a pointer to a new header.
