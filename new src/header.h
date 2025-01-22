@@ -136,8 +136,7 @@ header_t remove_header_type (header_t header);
  * @param a Pointer in a allocation that has been forwarded
  * @return Address of header with forwarding address.
  */
-void *
-find_header_of_forwarded_alloc (heap_t *h, void *pointer);
+void *find_header_of_forwarded_alloc (heap_t *h, void *pointer);
 
 /**
  * Updates the header of a pointer to a new header.
@@ -196,6 +195,28 @@ header_t set_header_bit_vector (header_t the_header);
  * @note the header type will still need to be set separately
  */
 header_t change_pointer_in_header (header_t header, void *p);
+
+/**
+ * @brief Creates appropriate header to represent size given from format
+ * string. If string dose not contain pointers it will be saved as a number, If
+ * it has pointers but can be represented by a bitvector it will, otherwise we
+ * will save string in the heap and give a pointer to the header.
+ * It will fail if the format string has a invalid format or character.
+ * @param heap To allocate the string in if needed
+ * @param format string to convert into a header
+ * @param success Flag to indicate if conversion was successful.
+ * @return A Header with format encoded in one of the 3 possible ways.
+ */
+header_t convert_struct_to_header (heap_t *heap, char *format, bool *success);
+
+/**
+ * @brief Creates appropriate header to represent size given.
+ * This should not bee used when there are internal pointers in allocaction.
+ * @param size Size of allocation.
+ * @param success Flag to indicate if conversion was successful.
+ * @return A Header with size encoded.
+ */
+header_t create_header_raw (size_t size, bool *success);
 
 /**
  * @brief Returns a pointer stored in a header
