@@ -12,9 +12,12 @@
 
 #include "heap.h"
 
+/**
+ * Calculates the size of an allocation
+ * @param alloc a pointer to the allocation
+ * @return size_t the size of the allocation in bytes.
+ */
 size_t calc_alloc_size (char *alloc);
-
-bool move_to_valid_space_if_alloc_possible (heap_t *h, size_t alloc_size);
 
 /**
  * Allocate a new object on a heap with a given format string.
@@ -49,12 +52,18 @@ void *alloc_struct (heap_t *h, char *layout);
 void *alloc_raw (heap_t *h, size_t bytes);
 
 /**
- * Moves the bump pointer to the next available space that has room for the
- * allocation
- * @param h the heap to move within
- * @param total_alloc_size the size of the allocation (including header size)
- * @return true if an available space was found (did not reach end of the heap)
+ * Checks if the allocation is possible. May trigger GC to make space in the
+ * heap if threshold is reached. If allocation is possible the bump pointer is
+ * moved to the next available space.
+ * @param h the heap
+ * @param alloc_size the requested allocation size
+ * @return true if the allocation is possible.
  */
-bool move_to_next_available_space (heap_t *h, size_t total_alloc_size);
+bool move_to_valid_space_if_alloc_possible (heap_t *h, size_t alloc_size);
 
+/**
+ * @brief Adds padding to size if needed to ensure alignment
+ * @param alloc_size Original size
+ * @return Aligned Size >= alloc_size
+ */
 size_t align_alloc_size (size_t alloc_size);
