@@ -3,8 +3,6 @@
  * always use h_alloc_struct or h_allow_raw.
  */
 
-// TODO: MODIFY FILE
-
 #pragma once
 
 #include <stdbool.h>

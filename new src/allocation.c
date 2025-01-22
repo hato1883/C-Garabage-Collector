@@ -4,8 +4,6 @@
  * and aligning allocations.
  */
 
-// TODO: MODIFY FILE
-
 #include <assert.h>
 #include <math.h>
 #include <stdbool.h>
